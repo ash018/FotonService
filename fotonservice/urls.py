@@ -20,4 +20,5 @@ from django.conf.urls import url, include
 urlpatterns = [
     path('admin/', admin.site.urls),
     url(r'^fotonservice/api/v0/', include('fotonapp.urls')),
+    url(r'^pumpservice/api/v0/', include('pumpservice.urls')),
 ]

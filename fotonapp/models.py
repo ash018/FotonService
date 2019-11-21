@@ -12,7 +12,7 @@ class RowStatus(models.Model):
         return self.Name
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'RowStatus'
 
 class Territory(models.Model):
@@ -26,7 +26,7 @@ class Territory(models.Model):
 
     class Meta:
         verbose_name='Territory'
-        managed = True
+        managed = False
         db_table = 'Territory'
 
 class Area(models.Model):
@@ -38,7 +38,7 @@ class Area(models.Model):
         return self.AreaName
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'Area'
 
 
@@ -49,7 +49,7 @@ class UserArea(models.Model):
 
     class Meta:
         verbose_name='Assign User Area'
-        managed = True
+        managed = False
         db_table = 'UserArea'
 
 class MotorTechnician(models.Model):
@@ -66,7 +66,7 @@ class MotorTechnician(models.Model):
 
     class Meta:
         verbose_name_plural = 'Motor Technician'
-        managed = True
+        managed = False
         db_table = 'MotorTechnician'
 
 class EngTarget(models.Model):
@@ -83,7 +83,7 @@ class EngTarget(models.Model):
 
     class Meta:
         verbose_name_plural = 'Engineer Target'
-        managed = True
+        managed = False
         db_table = 'EngTarget'
 
 class UserInfo(models.Model):
@@ -98,7 +98,7 @@ class UserInfo(models.Model):
         return self.UserName
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'TsaTsoLogin'
 
 class TsaTarget(models.Model):
@@ -115,7 +115,7 @@ class TsaTarget(models.Model):
 
     class Meta:
         verbose_name_plural = 'TSA Target'
-        managed = True
+        managed = False
         db_table = 'TsaTarget'
 
 class ServiceCallType(models.Model):
@@ -126,7 +126,7 @@ class ServiceCallType(models.Model):
         return self.CallTypeName
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'ServiceCallType'
 
 class ServiceCategory(models.Model):
@@ -137,7 +137,7 @@ class ServiceCategory(models.Model):
         return self.CategoryDetails
 
     class Meta:
-        managed = True
+        managed = False
         db_table = 'ServiceCategory'
 
 class ServiceDetails(models.Model):
@@ -176,5 +176,5 @@ class ServiceDetails(models.Model):
 
     class Meta:
         verbose_name_plural = 'Service Details'
-        managed = True
+        managed = False
         db_table = 'ServiceDetails'

@@ -38,6 +38,7 @@ INSTALLED_APPS = [
     'django.contrib.messages',
     'django.contrib.staticfiles',
     'fotonapp',
+    'pumpservice',
     'smart_selects',
     'django_admin_listfilter_dropdown',
     'rangefilter'
@@ -86,7 +87,19 @@ DATABASES = {
             'driver_supports_utf8': 'True',
             'use_legacy_date_fields': 'True'
         }
-    }
+    },
+    'PumpTrack': {
+            'NAME': 'PumpTrack',
+            'ENGINE': 'sql_server.pyodbc',
+            'HOST': '192.168.100.62',
+            'USER': 'sa',
+            'PASSWORD': 'dataport',
+            'OPTIONS': {
+                'driver': 'SQL Server Native Client 11.0',
+                'driver_supports_utf8': 'True',
+                'use_legacy_date_fields': 'True'
+            }
+        }
 }
 
 
