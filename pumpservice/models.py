@@ -35,22 +35,25 @@ class ServiceDetails(models.Model):
     CustomerCode = models.CharField(max_length=100, db_column='CustomerCode', default='N/A')
     Mobile = models.CharField(max_length=20,db_column='Mobile', default='N/A')
     ServicePortFolio = models.CharField(max_length=100,db_column='ServicePortFolio', default='N/A')
-    ServiceCount = models.CharField(max_length=100, db_column='ServiceCount', default='N/A')
+    ServiceCount = models.CharField(max_length=100, db_column='ServiceCount', default='N/A')#KEY_SERVICETIME
+    ProductModel = models.CharField(max_length=100, db_column='ProductModel', default='N/A')#KEY_MODEL
 
-    ServiceDemandDate = models.DateTimeField(db_column='ServiceDemandDate')
-    ServiceStartDate = models.DateTimeField(db_column='ServiceStartDate')
-    ServiceEndDate = models.DateTimeField(db_column='ServiceEndDate')
-    ServiceIncome = models.FloatField(db_column='ServiceIncome', default=0.0)
-    VisitDate = models.DateTimeField(db_column='VisitDate')
+    ServiceDemandDate = models.DateTimeField(db_column='ServiceDemandDate')#KEY_COMPLAINDATE
+    ServiceStartDate = models.DateTimeField(db_column='ServiceStartDate')#KEY_ATTENDATE
+    #ServiceEndDate = models.DateTimeField(db_column='ServiceEndDate')
+    ServiceIncome = models.FloatField(db_column='ServiceIncome', default=0.0)# KEY_SERVICECHARGE
+    VisitDate = models.DateTimeField(db_column='VisitDate')#KEY_ATTENDATE
 
-    MobileCreatedDT = models.DateTimeField(db_column='MobileCreatedDT', auto_now_add=True)
-    MobileEditedDT = models.DateTimeField(db_column='MobileEditedDT', auto_now_add=True)
-    MobileLogCount = models.IntegerField(db_column='MobileLogCount',default=0)
+    #MobileCreatedDT = models.DateTimeField(db_column='MobileCreatedDT', auto_now_add=True)
+    #MobileEditedDT = models.DateTimeField(db_column='MobileEditedDT', auto_now_add=True)
+    #MobileLogCount = models.IntegerField(db_column='MobileLogCount',default=0)
+    Latitude = models.DecimalField(max_digits=18, decimal_places=8, db_column='Latitude', default=0.0)#KEY_SLAT
+    Longitude = models.DecimalField(max_digits=18, decimal_places=8, db_column='Longitude', default=0.0)#KEY_SLANG
     MobileId = models.IntegerField(db_column='MobileId', default=0)
     ServerInsertDateTime = models.DateTimeField(auto_now_add=True)
     ServerUpdateDateTime = models.DateTimeField(auto_now=True)
 
-    ServiceRatting = models.CharField(db_column='ServiceRatting', max_length=20, default='0')
+    #ServiceRatting = models.CharField(db_column='ServiceRatting', max_length=20, default='0')
     UserId = models.ForeignKey(AppUser, db_column='AppUserId', on_delete=models.CASCADE)
 
     def __str__(self):
