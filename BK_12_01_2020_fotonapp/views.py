@@ -37,11 +37,10 @@ class ServiceDetailsViewSet(viewsets.ModelViewSet):
             mobileIdSynch = list()
             userid = str(request.data.get('UserId'))
             data = json.loads(request.data.get('Data'))
-
             print(data)
-            # print(userid)
+            print(userid)
             for elem in data:
-                # print("----AAAA----"+str(elem))
+                #print("----AAAA----"+str(elem))
                 TractorPurchaseDate = datetime.strptime(str(elem['KEY_BUYING_DATE']), '%Y-%m-%d %H:%M:%S')
                 DateOfInstallation = datetime.strptime(str(elem['KEY_INSTALLAION_DATE']), '%Y-%m-%d %H:%M:%S')
                 ServiceDemandDate = datetime.strptime(str(elem['KEY_CALL_SERVICE_DATE']), '%Y-%m-%d %H:%M:%S')
@@ -51,19 +50,14 @@ class ServiceDetailsViewSet(viewsets.ModelViewSet):
                 MobileCreatedDT = datetime.strptime(str(elem['KEY_CREATED_AT']), '%Y-%m-%d %H:%M:%S')
                 MobileEditedDT = datetime.strptime(str(elem['KEY_EDITED_AT']), '%Y-%m-%d %H:%M:%S')
                 MobileId = int(elem['KEY_ID'])
-                print('MobileId')
-                print(MobileId)
+
                 user_key = UserInfo.objects.filter(UserName=userid).first()
                 service_category_key = ServiceCategory.objects.filter(pk=int(elem['KEY_SERVICE_TYPE'])).first()
                 service_call_key = ServiceCallType.objects.filter(pk=int(elem['KEY_CALL_TYPE'])).first()
 
-                data_mobile = ServiceDetails.objects.filter(Id=MobileId, UserId=user_key)
-
-                print('data_mobile')
-                print(data_mobile)
+                data_mobile = ServiceDetails.objects.filter(MobileId=MobileId, UserId=user_key)
 
                 if len(list(data_mobile.values())) > 0: #Update operation
-                    print("----UPDATE----" + str(data))
                     data_mobile = data_mobile[0]
                     data_mobile.CustomerName = str(elem['KEY_CUSTOMER_NAME'])
                     data_mobile.Mobile = str(elem['KEY_CUSTOMER_MOBILE'])
@@ -89,7 +83,7 @@ class ServiceDetailsViewSet(viewsets.ModelViewSet):
                     data_mobile.save()
                     #mobileIdSynch.append(MobileId)
                 else:
-                    print("----BBBBB----" + str(data))
+                    #print("----BBBBB----" + str(elem))
                     supeCode = MotorTechnician.objects.filter(StaffId=str(userid)).values('user').first()
                     supervisorCode = User.objects.filter(pk=int(supeCode['user'])).first()
                     isVerify = RowStatus.objects.filter(pk=int(2)).first()
@@ -125,7 +119,6 @@ class ServiceDetailsViewSet(viewsets.ModelViewSet):
 
             return Response({'StatusCode': '200', 'StatusMessage': 'Service Added Successfully'})
         except Exception as ex:
-            print(ex)
             return Response({'StatusCode': '500', 'StatusMessage': 'Exception Occured. Details: ' + str(ex)})
 
 
@@ -157,7 +150,7 @@ class GetCustomerDetail(viewsets.ModelViewSet):
                                   "UID=sa;"
                                   "PWD=dataport;")
             cursor = conn.cursor()
-            cursor.execute("SELECT TOP 1 Cstm.CustomerCode, Cstm.CustomerName1, Cstm.Mobile, CONVERT(char(19), Inv.InvoiceDate,121) as InvoiceDate "
+            cursor.execute("SELECT TOP 1 Cstm.CustomerCode, Cstm.CustomerName1, Cstm.Mobile, Inv.InvoiceDate "
                            "FROM [FOTON].[dbo].[InvoiceDetailsBatch] InvDtl "+
                            "INNER JOIN Invoice Inv ON InvDtl.Invoiceno = Inv.InvoiceNo "+
                            "INNER JOIN Customer Cstm ON Cstm.CustomerCode = Inv.CustomerCode "+

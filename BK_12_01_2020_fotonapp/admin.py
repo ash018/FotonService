@@ -36,15 +36,6 @@ class UserAreaAdmin(admin.ModelAdmin):
 admin.site.register(UserArea, UserAreaAdmin)
 admin.site.unregister(User)
 
-class EmployeeAdmin(admin.ModelAdmin):
-
-    class Meta:
-        model = Employee
-        fields = ('user', 'birthday', 'address', 'mobile')
-
-admin.site.register(Employee, EmployeeAdmin)
-
-
 class UserCreateForm(UserCreationForm):
 
     class Meta:
@@ -219,11 +210,10 @@ class ExportCsvMixin:
 
 
 class ServiceDetailsAdmin(admin.ModelAdmin, ExportCsvMixin):
-    list_display = ('UserId', 'ServerInsertDateTime', 'CustomerName', 'Mobile', 'HoursProvided', 'ServiceCategoryId', 'ServiceCallTypeId',
-                    'DriverName')
+    list_display = ('UserId', 'ServerInsertDateTime', 'CustomerName', 'Mobile', 'HoursProvided', 'ServiceCategoryId', 'ServiceCallTypeId')
     search_fields = ['CustomerName', 'Mobile']
     actions = ["export_as_csv"]
-    readonly_fields = ['CustomerName', 'Mobile', 'Chassis', 'PurchaseDate', 'HoursProvided', 'DriverName',
+    readonly_fields = ['CustomerName', 'Mobile', 'Chassis', 'PurchaseDate', 'HoursProvided',
               'DateOfInstallation', 'ServiceDemandDate','ServiceStartDate',
               'ServiceEndDate', 'ServiceIncome', 'VisitDate', 'UserId',
               'ServiceCategoryId', 'ServiceCallTypeId']
@@ -231,8 +221,7 @@ class ServiceDetailsAdmin(admin.ModelAdmin, ExportCsvMixin):
     def changelist_view(self, request, extra_context=None):
         if request.user.id == 1:
             self.list_display = (
-            'TechnicianName', 'CustomerName', 'Mobile', 'ServiceDemandDate', 'ServiceStartDate', 'ServiceEndDate' ,
-            'IsVerify', 'DriverName')
+            'TechnicianName', 'CustomerName', 'Mobile', 'ServiceDemandDate', 'ServiceStartDate', 'ServiceEndDate')
         return super(ServiceDetailsAdmin, self).changelist_view(request, extra_context)
 
     list_filter = (

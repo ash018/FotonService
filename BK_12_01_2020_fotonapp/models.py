@@ -4,23 +4,6 @@ from django.contrib.auth.models import AbstractUser
 from smart_selects.db_fields import ChainedForeignKey
 # Create your models here.
 
-from django.contrib.auth.models import AbstractUser
-
-from django.contrib.auth.models import User
-
-class Employee(models.Model):
-    user = models.OneToOneField(User, db_column='UserId', on_delete=models.CASCADE, verbose_name='Engineer')
-    birthday = models.DateField(db_column = 'Birthday')
-    address = models.CharField(max_length=100, db_column='Address')
-    mobile = models.CharField(max_length=12, db_column='Mobile')
-
-    def __str__(self):
-        return self.user.username
-
-    class Meta:
-        managed = True
-        db_table = 'Employee'
-
 class RowStatus(models.Model):
     Id = models.AutoField(primary_key=True, db_column='RowStatusId')
     Name = models.CharField(max_length=10, db_column='Name')

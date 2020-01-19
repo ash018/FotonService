@@ -11,7 +11,6 @@ https://docs.djangoproject.com/en/2.1/ref/settings/
 """
 
 import os
-from django.conf import settings
 
 # Build paths inside the project like this: os.path.join(BASE_DIR, ...)
 BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
@@ -26,8 +25,7 @@ SECRET_KEY = 'z&^y8-h(1y!yi2(-fp*31c3bo&0o*ea$vvisc+-=h4z9ha_10h'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '116.68.205.71','192.168.101.121', '192.168.101.188','192.168.101.197',
-                 '192.168.100.61', '116.68.205.72', 'mis.digital','localhost','192.168.101.188']
+ALLOWED_HOSTS = ['127.0.0.1', '0.0.0.0', '116.68.205.71','192.168.101.121', '192.168.101.188','192.168.101.197', '192.168.100.61', '116.68.205.72', 'mis.digital','localhost','192.168.101.188']
 
 
 # Application definition
@@ -138,6 +136,3 @@ USE_TZ = False
 # https://docs.djangoproject.com/en/2.1/howto/static-files/
 
 STATIC_URL = '/static/'
-
-#AUTH_USER_MODEL = 'core.User'
-
